@@ -60,6 +60,7 @@
 
 <script>
 import AlertTip from '../../components/AlertTip/AlertTip.vue'
+import { reqSendCode } from '../../api'
 export default {
   components: {
     AlertTip
@@ -94,7 +95,7 @@ export default {
     }
   },
   methods: {
-    getCode () {
+    async getCode () {
       if (!this.computeTime) {
         this.computeTime = 30
         const interalId = setInterval(() => {
@@ -103,8 +104,19 @@ export default {
             clearInterval(interalId)
           }
         }, 1000)
+        // 发送ajax请求(向指定手机号发送验证码短信)
+        const result = await reqSendCode(this.phone)
+        if (result.code === 1) {
+          // 显示提示
+          this.showAlert(result.msg)
+          // 停止计时
+          if (this.computeTime) {
+            this.computeTime = 0
+            clearInterval(this.intervalId)
+            this.intervalId = undefined
+          }
+        }
       }
-    // 发送ajax请求(向指定手机号发送验证码短信)
     },
     login () {
     // 前台表单验证

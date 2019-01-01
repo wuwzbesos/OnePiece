@@ -1,0 +1,8 @@
+1、获取图形验证码
+ http://localhost:8081/user/getVerificationCode
+
+2、获取手机短信验证码
+ http://localhost:8081/user/sendcode
+
+3、密码登录接口
+ http://localhost:8081/user/Login
