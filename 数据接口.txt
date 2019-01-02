@@ -4,5 +4,14 @@
 2、获取手机短信验证码
  http://localhost:8081/user/sendcode
 
-3、密码登录接口
+3、手机短信登录接口
  http://localhost:8081/user/Login
+
+ phone:Sring
+ code:String
+
+4、用户密码登录
+  http://localhost:8081/user/LoginPwd
+ String captace
+ String name
+ String password
