@@ -40,7 +40,7 @@
                     </div>
                     </section>
                     <section class="login_message">
-                    <input type="text" maxlength="11" placeholder="验证码" v-model="captcha">
+                    <input type="text" maxlength="4" placeholder="验证码" v-model="captcha">
                     <img class="get_verification" @click="getCaptcha" src="http://127.0.0.1:8081/user/getVerificationCode" alt="captcha">
                     </section>
                 </section>
@@ -123,11 +123,25 @@ export default {
       if (this.loginway) { // 短信登录
         if (!this.rightPhone) {
         // 手机不正确
+          this.showAlert('手机号码格式不正确！')
+          return ''
         } else if (!/^\d{6}$/.test(this.code)) {
-
+        // 验证码为6位数字
+          this.showAlert('验证码为6位数字')
+          return ''
         }
+        alert('yes')
       } else {
-
+        if (!this.name) {
+          this.showAlert('用户名不能为空！')
+          return ''
+        } else if (!this.pwd || !/(?!^\d+$)(?!^[a-zA-Z]+$)[0-9a-zA-Z]{6,8}$/.test(this.pwd)) {
+          this.showAlert('密码不能为空！')
+          return ''
+        } else if (!this.captcha || !/[0-9a-zA-Z]{4}$/.test(this.captcha)) {
+          this.showAlert('验证码不能为空！')
+          return ''
+        }
       }
     },
     showAlert (alertText) {
@@ -136,7 +150,6 @@ export default {
     },
     // 获取动态图形验证码
     getCaptcha (event) {
-      alert('sssss')
       event.target.src = 'http://127.0.0.1:8081/user/getVerificationCode?' + Date.now()
     },
     // 关闭警告框
