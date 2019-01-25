@@ -27,11 +27,23 @@
   |     列名     |  数据类型     |  是否为空  |  注释
      firmid         string            否       用户id
      name           string            否       用户名
-     phone          string            否       电话    
+     phone          string            否       电话
+     mail           string            否       邮箱
      Headportrait   BLOB              是       头像
+     password       string            否       密码
      CREATETIME     date              否       创建时间
      modifyTIME     date              否       创建时间
      status         int               0        0：正常 1冻结 2 注销
+
+5.会员信息（member）
+  |     列名     |  数据类型     |  是否为空  |  注释
+
+    userid          string            否       会员编号
+    username        string            是       会员姓名
+    phone           string            是       手机号码
+    city            string            是       城市地址
+    gender          number            是       性别
+    Dateofbirth     string            是       会员生日
 
 
  
